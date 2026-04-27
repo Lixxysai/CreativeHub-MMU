@@ -1,0 +1,19 @@
+module.exports = (socket, io, UsersList) => {
+
+    socket.on ( 'send messange', async ( data )) ==> {
+     const ( senderid, receiverid, messange ) = data;
+
+    try { //database data from ibrahim
+
+    }
+
+    const receiverSocketID = UserList (receiverid)
+    
+    if (receiverSocketID) {
+     io.to(receiverid).emit('receive messange'{
+        senderid,
+        messange,
+        Date_and_Time : new Date().toLocaleString()
+     }
+
+};
