@@ -1,11 +1,11 @@
-module.exports = (socket, io, UsersList) => {
+mmodule.exports = (socket, io, UsersList) => {
 
   socket.on('send messange', async (data) => {
     const { senderid, receiverid, messange } = data;
 
     try {
     
-      await MessageModel.create({
+      const savedMessage = await MessageModel.create({
         sender: senderid,
         receiver: receiverid,
         content: messange,
