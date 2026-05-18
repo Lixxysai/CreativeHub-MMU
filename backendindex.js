@@ -9,11 +9,17 @@ ________________________________________________________________________________
 const UsersList = {};
 
 const ProfileStatus = require('./status')
-const MessangePrivate = require('./PrivateChat')
+const MessagePrivate = require('./PrivateChat')
+const GroupMessage = require ('/GroupChat')
+const FirstTimeRegisterProfile = require ('/FirstRegisterProfile')
+const ChangeProfile = require ('/ChangeProfile')
 
 io.on('connection', (socket) => {
 
-    ProfileStatus(socket, io, UsersList); 
     MessangerPrivate(socket, io, UsersList);
     MessangerGroup(socket, io, UsersList);
+    FirstTimeRegisterProfile(socket, io, UsersList);
+    ChangeProfile(socket, io, UsersList);
+    ProfileStatus(socket, io, UsersList);
+
 });
