@@ -6,35 +6,58 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
+<nav>
+  <div class="logo">
+    <img src="mmulogo.png" alt="MMU Logo">
     <h1>CreativeHub MMU</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="upload.html">Upload</a></li>
-      <li><a href="chat.html">Chatroom</a></li>
-      <li><a href="profile.html">Profile</a></li>
-    </ul>
-  </nav>
+  </div>
+  <ul>
+    <li><a href="homepage.html">Home</a></li>
+    <li><a href="upload.html">Upload</a></li>
+    <li><a href="chat.html">Chatroom</a></li>
+    <li><a href="profile.html">Profile</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
 
   <main>
     <h2>Student Login</h2>
     <form id="loginForm">
-      <label>MMU Email:</label>
-      <input type="email" name="email" required><br>
+      <label for="email">MMU Email:</label>
+      <input type="email" id="email" name="email" placeholder="example@student.mmu.edu.my" required>
 
-      <label>Student ID:</label>
-      <input type="text" name="studentId" required><br>
+      <label for="studentId">Student ID:</label>
+      <input type="text" id="studentId" name="studentId" placeholder="e.g. 252FC253PP" required>
 
-      <label>Password:</label>
-      <input type="password" name="password" required><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required>
 
       <button type="submit">Login</button>
     </form>
+
+    <section class="new-student">
+      <h3>New Student?</h3>
+      <p>Create your password to join CreativeHub MMU.</p>
+      <form id="registerForm">
+        <label for="newEmail">MMU Email:</label>
+        <input type="email" id="newEmail" name="newEmail" required>
+
+        <label for="newStudentId">Student ID:</label>
+        <input type="text" id="newStudentId" name="newStudentId" required>
+
+        <label for="newPassword">Create Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </section>
   </main>
 
-  <footer> 
-    <p>© 2026 CreativeHub MMU | About | Contact | Events</p>
+  <footer>
+    <p>© 2026 CreativeHub MMU | About | Contact | MMU Art Events</p>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
+
