@@ -24,7 +24,10 @@ module.exports = (app, io) => {
                 author: req.body.author,
                 content: req.body.content,
                 imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`,
-                date_time: new Date().toLocaleString()
+                date_time: new Date().toLocaleString(),
+                like:0,
+                dislike:0,
+                comment:[]
 
             };
 
@@ -34,5 +37,60 @@ module.exports = (app, io) => {
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
+    });
+
+app.post('/api/posts/:id/like', (req, res) => {
+        const postId = req.params.id;
+        const post = postsMemoryStorage.find(p => p.id === postId);
+
+        if (!post) {
+            return res.status(404).json({ error: "This post cant be found" });
+        }
+
+        post.likes += 1;
+
+        return res.status(200).json({ success: true, likes: post.likes, dislikes: post.dislikes });
+    });
+
+    app.post('/api/posts/:id/comments', (req, res) => {
+        try {
+            const postId = Number(req.params.id); // 👈 转换为数字匹配 id
+            const { commentAuthor, text } = req.body; // 其他人的名字和评论内容
+
+            if (!commentAuthor || !text) return res.status(400).json({ error: "内容不能为空" });
+
+            const post = postsMemoryStorage.find(p => p.id === postId);
+            if (!post) return res.status(404).json({ error: "找不到该帖子" });
+
+            const newComment = {
+                id: Date.now(),
+                author: commentAuthor,
+                text: text,
+                date_time: new Date().toLocaleString()
+            };
+
+            post.comments.push(newComment); // 塞进帖子的评论区
+            io.emit('newCommentBroadcast', { postId, comment: newComment }); // 实时广播
+
+            return res.status(201).json({ success: true, comment: newComment });
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    });
+
+    app.post('/api/posts/:id/dislike', (req, res) => {
+        const postId = req.params.id;
+        const post = postsMemoryStorage.find(p => p.id === postId);
+
+        if (!post) {
+            return res.status(404).json({ error: "This post cant be found" });
+        }
+
+        post.dislikes += 1; 
+        return res.status(200).json({ success: true, likes: post.likes, dislikes: post.dislikes });
+    });
+
+    app.get('/api/posts', (req, res) => {
+        return res.status(200).json(postsMemoryStorage);
     });
 };
