@@ -1,4 +1,4 @@
-module.exports = (socket, io) => {
+module.exports = (socket, io, UsersList) => {
 
   socket.on("send global message", async (data) => {
     const { senderid, message } = data; 
@@ -16,12 +16,12 @@ module.exports = (socket, io) => {
         Date_and_Time: savedMessage.date_time
       });
 
-      console.log(`${userid} send a messange in global chat`);
+      console.log(`${senderid} send a message in global chat`); 
 
     } catch (error) {
-      console.error("global chat messange send failed, error:", error);
+      console.error("global chat message send failed, error:", error);
       socket.emit('error', {
-        system_message: "failed to send messange on global chat"
+        system_message: "failed to send message on global chat"
       });
     }
   });
