@@ -1,38 +1,40 @@
 module.exports = (socket, io, UsersList) => {
 
-    socket.on('update_name', (NewUserName) => {
+    // 1. 修改用户名
+    socket.on('update_name', async (NewUserName) => {
         const OldUserName = socket.username;
-        if (OldUserName && UsersList[OldUserName]) {
-            UsersList[NewUserName] = { ...UsersList[OldUserName] };
-            
-            delete UsersList[OldUserName];
+        if (!OldUserName || !UsersList[OldUserName]) return;
 
+        try {
+            UsersList[NewUserName] = { ...UsersList[OldUserName] };
+            delete UsersList[OldUserName];
             socket.username = NewUserName;
 
-            console.log(`${oldName} changed new name, ${NewUserName}`);
+            console.log(`${OldUserName} changed new name to ${NewUserName}`);
+        } catch (error) {
+            console.error(error);
         }
     });
 
-    socket.on('update_avatar', (NewPic) => {
+    socket.on('update_avatar', async (NewPic) => {
         const username = socket.username;
-        if (username && UsersList[username]) {
-            UsersList[username].avatar = NewPic;
+        if (!username) return;
 
-            console.log(`${userid} changed the avatar picture`);
-        
+        try {
+            console.log(`${username} changed the avatar picture`);
+        } catch (error) {
+            console.error(error);
         }
     });
 
-    socket.on('introduce_bio',(NewBio) => {
-        const OldBio = socket.UserBio;
-        if (OldBio && UsersList[OldBio]) {
-            UsersList[NewBio] = { ...UsersList[OldBio] };
-            
-            delete UsersList[OldBio];
+    socket.on('introduce_bio', async (NewBio) => {
+        const username = socket.username;
+        if (!username) return;
 
-            socket.UserBio = NewBio;
-
-            console.log(`${userid} changed bio`);
+        try {
+            console.log(`${username} changed bio`);
+        } catch (error) {
+            console.error(error);
         }
     });
 };
