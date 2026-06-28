@@ -6,46 +6,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
   <nav>
     <h1>CreativeHub MMU</h1>
     <ul>
       <li><a href="homepage.html">Home</a></li>
       <li><a href="upload.html">Upload</a></li>
-      <li><a href="chat.html">Chatroom</a></li>
+      <li><a href="chat.html" class="active">Chatroom</a></li>
       <li><a href="profile.html">Profile</a></li>
       <li><a href="login.html">Logout</a></li>
     </ul>
   </nav>
 
-  <!-- Chatroom Section -->
   <main class="chatroom">
     <h2>Global Chat</h2>
 
-    <!-- Chat Window -->
-    <div id="chatWindow">
-      <!-- Example messages -->
-      <div class="message user-alex"><strong>Alex:</strong> Hey everyone!</div>
-      <div class="message user-sam"><strong>Sam:</strong> Working on a new piece!</div>
-      <div class="message user-lily"><strong>Lily:</strong> Can’t wait to see it!</div>
-      <div class="message user-zack"><strong>Zack:</strong> Looks great so far!</div>
-    </div>
+    <div id="chatWindow"></div>
 
-    <!-- Input Area -->
     <div class="chat-controls">
+      <input type="text" id="receiverId" placeholder="Receiver ID">
       <input type="text" id="messageInput" placeholder="Type a message...">
       <button id="sendBtn">Send</button>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <p>© 2026 CreativeHub MMU | About | Contact | MMU Art Events</p>
   </footer>
 
-  <!-- Socket.IO client -->
   <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-  <script src="script.js"></script>
+  <script src="chatsystem.js"></script>
 </body>
 </html>
 
