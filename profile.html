@@ -33,7 +33,27 @@
     <p id="profileInfo">Loading user info...</p>
 
     <h3>Your Posts</h3>
-    <section id="userPosts" class="grid"></section>
+    <section id="userPosts" class="grid">
+      <div class="art-card">
+        <p>Example post content goes here...</p>
+        <small>Posted on 28 June 2026</small>
+        <div class="post-actions">
+          <button class="like-btn">👍 Like</button>
+          <button class="dislike-btn">👎 Dislike</button>
+        </div>
+      </div>
+    </section>
+
+    <h3>Friends</h3>
+    <ul id="friendsList">
+      <li>Friend 1</li>
+      <li>Friend 2</li>
+    </ul>
+
+    <div class="add-friend">
+      <input type="text" id="friendName" placeholder="Enter username to add">
+      <button class="add-friend-btn">Add Friend</button>
+    </div>
   </main>
 
   <footer>
@@ -44,4 +64,3 @@
   <script src="profile.js"></script>
 </body>
 </html>
-
