@@ -338,3 +338,66 @@ body {
   color: #003366;
 }
 
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.post-actions button {
+  background: #003366; 
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.post-actions button:hover {
+  background: #E30613; 
+}
+
+
+.add-friend {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.add-friend input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-friend-btn {
+  background: #003366;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-friend-btn:hover {
+  background: #E30613;
+}
+
+#friendsList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#friendsList li {
+  background: #f9f9f9;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
