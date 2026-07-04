@@ -1,13 +1,19 @@
 const bcrypt = require('bcrypt');
-// const UserModel = require('./models/User');
+const User = require("./User.model.js");
+// User.model.js to connect the backend with the database
 
 module.exports = (socket, io, UsersList) => {
 
     socket.on('setup_first_time_profile', async (data) => {
-        const { username, avatar, password } = data;
+        const { username, email, studentId, password } = data;
 
         if (!username || username.trim() === '') {
             socket.emit('setup_response', { success: false, message: 'name cant be empty' });
+            return;
+        }
+
+        if (!email || email.trim() === '') {
+            socket.emit('setup_response', { success: false, message: 'email cant be empty' });
             return;
         }
 
@@ -16,14 +22,30 @@ module.exports = (socket, io, UsersList) => {
             return;
         }
 
+        if (!studentId || studentId.trim() === '') {
+            socket.emit('setup_response', { success: false, message: 'Student ID cant be empty' });
+            return;
+        }
+
         if (password.length < 6 || password.length > 12) {
-            socket.emit('setup_response', { success: false, message: 'the password must be between 6-12 words' });
+            socket.emit('setup_response', { success: false, message: 'the password must be between 6-12 characters' });
             return;
         }
 
         try {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+            const user = new User({
+
+                username,
+                email,
+                studentId,
+                password: hashedPassword
+
+            });
+
+            await user.save();
 
             UsersList[username] = {
                 socketId: socket.id,
