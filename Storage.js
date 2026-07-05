@@ -1,5 +1,5 @@
 module.exports = {
-    UserList: {},
+    UsersList: {},
     postsMemoryStorage: [], 
     chatMemoryStorage: [],
 }
