@@ -8,15 +8,13 @@ const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const email = document.getElementById('email').value.trim();
-    const studentId = document.getElementById('studentId').value.trim();
-    const password = document.getElementById('password').value();
+   const loginData = {
+        email: document.getElementById('email').value.trim(),
+        studentId: document.getElementById('studentId').value.trim(),
+        password: document.getElementById('password').value
+    };
 
-    socket.emit('login', {
-        email,
-        studentId,
-        password
-    });
+    socket.emit('login', loginData);
 
 });
 
@@ -26,10 +24,10 @@ const registerForm = document.getElementById('registerForm');
 registerForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const username = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const studentId = document.getElementById('studentId').value.trim();
-    const password = document.getElementById('password').value();
+    const username = document.getElementById('newUsername').value.trim();
+    const email = document.getElementById('newEmail').value.trim();
+    const studentId = document.getElementById('newStudentId').value.trim();
+    const password = document.getElementById('newPassword').value.trim();
 
     socket.emit("setup_first_time_profile", {
 
@@ -44,7 +42,7 @@ registerForm.addEventListener('submit', function (event) {
 
 
 //Register response from backend
-socket.on('setup.response', function (response){
+socket.on('setup_response', function (response){
 
     alert(response.message);
     if (response.success) {
@@ -56,7 +54,7 @@ socket.on('setup.response', function (response){
 
 
 //login response from backend
-socket.on('login.response', function (response) {
+socket.on('login_response', function (response) {
 
     alert(response.message);
     if (response.success) {
