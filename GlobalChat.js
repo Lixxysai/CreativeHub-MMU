@@ -1,28 +1,36 @@
-module.exports = (socket, io, UsersList) => {
+const Message = require('./Message.model');
 
-  socket.on("send global message", async (data) => {
-    const { senderid, message } = data; 
+module.exports = (socket, io) => {
+
+  //loading previous messages from recent chat
+  socket.on('load global messages', async () => {
+    try {
+      const messages = await Message.find().sort({ _id: 1 });
+      socket.emit('global message history', messages);
+    } catch (err) {
+      console.error('Error loading global messages:', err);
+    }
+  });
+
+  //send messages in the global chat
+  socket.on('send global message', async (data) => {
+    const { senderid, message } = data;
 
     try {
-      const savedMessage = await MessageModel.create({
-        sender: senderid,
-        content: message,
-        date_time: new Date().toLocaleString()
+      const newMessage = await Message.create({
+        senderId: senderid,
+        message: message,
       });
 
       io.emit('receive global message', {
-        senderid: senderid,
-        message: message,
-        Date_and_Time: savedMessage.date_time
+        senderid: newMessage.senderId,
+        message: newMessage.message,
+        date_time: newMessage.date_and_time,
       });
 
-      console.log(`${senderid} send a message in global chat`); 
-
-    } catch (error) {
-      console.error("global chat message send failed, error:", error);
-      socket.emit('error', {
-        system_message: "failed to send message on global chat"
-      });
+      console.log(`${senderid} sent a message in global chat`);
+    } catch (err) {
+      console.error('Error sending global message:', err);
     }
   });
 };
