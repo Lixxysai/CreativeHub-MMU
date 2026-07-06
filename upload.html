@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CreativeHub MMU - Upload</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -21,18 +22,21 @@
   <main>
     <h2>Upload Your Artwork</h2>
     <form id="uploadForm">
-      <label>Upload Image:</label>
-      <input type="file" name="image" required><br>
-      <label>Caption:</label>
-      <input type="text" name="caption" required><br>
-      <label>Tags (optional):</label>
-      <input type="text" name="tags"><br>
+      <label for="imageUpload">Upload Image:</label>
+      <input type="file" id="imageUpload" name="image" title="Select an image to upload" required><br>
+      <label for="captionInput">Caption:</label>
+      <input type="text" id="captionInput" name="caption" title="Enter a caption for your artwork" placeholder="Enter a caption" required><br>
+      <label for="tagsInput">Tags (optional):</label>
+      <input type="text" id="tagsInput" name="tags" title="Enter tags for your artwork" placeholder="e.g. abstract, watercolor"><br>
       <button type="submit">POST</button>
     </form>
+    
   </main>
 
   <footer>
     <p>© 2026 CreativeHub MMU | About | Contact | MMU Art Events</p>
   </footer>
+
+  <script src="upload.js"></script>
 </body>
 </html>
