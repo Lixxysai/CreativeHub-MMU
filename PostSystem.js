@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-// const PostModel = require('./models/Post');
+const Post = require('./Post.model'); // Assuming you have a Post model defined in Post.model.js
 
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
@@ -31,8 +31,7 @@ module.exports = (app, io, postsMemoryStorage) => {
                 comments: []  
             };
 
-            const newPost = { id: Date.now(), ...newPostData };
-            postsMemoryStorage.push(newPost);
+            const newPost = await Post.create(newPostData); // Save to MongoDB
 
             io.emit('newPostBroadcast', newPost);
             return res.status(201).json({ success: true, post: newPost });
@@ -76,7 +75,8 @@ module.exports = (app, io, postsMemoryStorage) => {
     app.get('/api/posts', async (req, res) => {
         try {
 
-            return res.status(200).json(postsMemoryStorage);
+           const posts = await Post.find().sort({ _id: -1 });
+           return res.status(200).json(posts);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
