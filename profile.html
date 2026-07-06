@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CreativeHub MMU - Profile</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* moved from inline style */
+    .status-controls { margin-bottom: 20px; }
+  </style>
 </head>
 <body>
 
@@ -21,7 +26,7 @@
     </ul>
   </nav>
 
-  <main class="profile">
+  <main class="profile profile-content">
     <div class="status-controls">
       <button onclick="setStatus('online')">Online</button>
       <button onclick="setStatus('busy')">Busy</button>
@@ -34,14 +39,7 @@
 
     <h3>Your Posts</h3>
     <section id="userPosts" class="grid">
-      <div class="art-card">
-        <p>Example post content goes here...</p>
-        <small>Posted on 28 June 2026</small>
-        <div class="post-actions">
-          <button class="like-btn">👍 Like</button>
-          <button class="dislike-btn">👎 Dislike</button>
-        </div>
-      </div>
+      
     </section>
 
     <h3>Friends</h3>
