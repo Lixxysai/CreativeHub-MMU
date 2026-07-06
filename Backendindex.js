@@ -9,6 +9,7 @@ const io = new Server(server);
 app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname )));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files
    
 
 mongoose.connect("mongodb+srv://MMU_dbuser:MiniITG083@cluster0.3gkegze.mongodb.net/CreativeHub?appName=Cluster0")
