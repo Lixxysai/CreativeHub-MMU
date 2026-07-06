@@ -1,29 +1,36 @@
-module.exports = (app, io, postsMemoryStorage) => {
+const Post = require('./Post.model'); // Import the Post model
 
-    app.post('/api/posts/:id/comments', (req, res) => {
+module.exports = (app, io) => {
+    //adding a comment to a post
+    app.post('/api/posts/:id/comments', async (req, res) => {
         try {
-            const postId = Number(req.params.id); 
+             
             const { commentAuthor, text } = req.body; 
-
+           
             if (!commentAuthor || !text) {
                 return res.status(400).json({ error: "content cant be empty" });
             }
-
-            const post = postsMemoryStorage.find(p => p.id === postId);
+         
+            const post = await Post.findById(req.params.id);
             if (!post) {
-                return res.status(404).json({ error: "cant found the post" });
+                return res.status(404).json({ error: "Post not found" });
             }
 
+            //Create new comment
             const newComment = {
                 author: commentAuthor,
                 text: text,
                 date_time: new Date().toLocaleString()
             };
 
-            if (!post.comments) post.comments = []; 
-            
+            //add  a comment
             post.comments.push(newComment); 
-            io.emit('newCommentBroadcast', { postId, comment: newComment }); 
+
+            //Save changes to MongoDB database system
+            await post.save()
+
+            //Notify everyone using socekt.io
+            io.emit('newCommentBroadcast', { postId: post._id, comment: newComment }); 
 
             return res.status(201).json({ success: true, comment: newComment });
         } catch (error) {
