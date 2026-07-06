@@ -1,11 +1,16 @@
 //Connecting to Socket.io server
 const socket = io();
+socket.on('connect', () => {
+    console.log('Connected to Socket.io server');
+
+});
 
 //Login form from frontend 
 
 const loginForm = document.getElementById('loginForm');
 
 loginForm.addEventListener('submit', function (event) {
+    console.log('Login form submitted');
     event.preventDefault();
 
    const loginData = {
@@ -15,7 +20,7 @@ loginForm.addEventListener('submit', function (event) {
     };
 
     socket.emit('login', loginData);
-
+    console.log('Login data sent to server:', loginData);
 });
 
 
@@ -58,6 +63,13 @@ socket.on('login_response', function (response) {
 
     alert(response.message);
     if (response.success) {
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('email', response.email);
+        localStorage.setItem('studentId', response.studentId);
+        console.log(localStorage.getItem('username'));
+        console.log(localStorage.getItem('email'));
+        console.log(localStorage.getItem('studentId'));
+        console.log('Login successful, redirecting to homepage...');
         window.location.href = '/homepage.html';
     }
 
