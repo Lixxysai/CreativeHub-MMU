@@ -166,6 +166,9 @@ CreativeHub-MMU
 
 # Authors
 
-CreativeHub MMU Development Team
+MMUCreativeHub G083
+Sailesh
+Demsmond
+Ibrahim
 
 Multimedia University (MMU)
