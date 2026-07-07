@@ -95,6 +95,9 @@ Open the website:
 
 ```
 http://localhost:3000  => http://localhost:3000**/placeURLfilehere**
+
+The URL file is a html file and it is recommended to use the /homepage.html as a starting since it's the main page of the website
+
 ```
 
 ---
@@ -157,6 +160,26 @@ Note: Other files that are listed not used or contact.html are not used in the w
 | bcrypt | Password hashing |
 
 ---
+
+## Important
+
+This project uses Express.js and Node.js.
+
+**Do NOT open the HTML files directly from File Explorer.**
+
+Incorrect:
+
+```
+file:///C:/CreativeHub-MMU/login.html
+```
+
+Correct:
+
+```
+http://localhost:3000/login.html
+```
+
+Reasoning: Other functions like Socket.io and express server can't express their code properly through regular file and some of the connection might not even work leaving the website in an unfinished and redundant kind of broken website
 
 # Notes
 
