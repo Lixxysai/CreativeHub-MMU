@@ -118,7 +118,7 @@ Backendindex.js
 ```
 CreativeHub-MMU
 │
-├── backendindex.js
+├── Backendindex.js
 ├── User.model.js
 ├── Post.model.js
 ├── Message.model.js
@@ -140,6 +140,8 @@ CreativeHub-MMU
 ├── uploads/
 ├── package.json
 └── README.md
+
+Note: Other files that are listed not used or contact.html are not used in the website, just the ones listed inside of the structure
 ```
 
 ---
