@@ -168,7 +168,7 @@ CreativeHub-MMU
 
 MMUCreativeHub G083
 - Sailesh
-- Demsmond
+- Desmond
 - Ibrahim
 
 Multimedia University (MMU)
