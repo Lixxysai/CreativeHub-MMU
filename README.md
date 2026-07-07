@@ -167,8 +167,8 @@ CreativeHub-MMU
 # Authors
 
 MMUCreativeHub G083
-Sailesh
-Demsmond
-Ibrahim
+- Sailesh
+- Demsmond
+- Ibrahim
 
 Multimedia University (MMU)
