@@ -12,7 +12,10 @@ app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname )));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files
-   
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'homepage.html'));
+});
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
