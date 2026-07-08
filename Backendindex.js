@@ -3,6 +3,8 @@ const http = require('http');
 const mongoose = require('mongoose');
 const { Server } = require('socket.io');
 
+require('dotenv').config();
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -12,7 +14,7 @@ app.use(express.static(path.join(__dirname )));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files
    
 
-mongoose.connect("mongodb+srv://MMU_dbuser:MiniITG083@cluster0.3gkegze.mongodb.net/CreativeHub?appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Connected to MongoDB");
 })
@@ -39,6 +41,8 @@ io.on('connection', (socket) => {
 
 });
 
-server.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+    console.log(`Server running on PORT ${PORT}`);
 });
