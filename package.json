@@ -1,0 +1,31 @@
+{
+  "name": "creativehub-mmu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Backendindex.js",
+  "scripts": {
+    "start": "node Backendindex.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lixxysai/CreativeHub-MMU.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Lixxysai/CreativeHub-MMU/issues"
+  },
+  "homepage": "https://github.com/Lixxysai/CreativeHub-MMU#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.4.0",
+    "mongoose": "^9.7.3",
+    "multer": "^2.2.0",
+    "socket.io": "^4.8.3"
+  }
+}
